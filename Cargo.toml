@@ -2,7 +2,7 @@
 name = "loglens"
 version = "0.1.0"
 edition = "2024"
-description = "Desktop viewer and analyzer for Serilog text logs"
+description = "Fast desktop log viewer and analyzer for Serilog text logs"
 repository = "https://github.com/shadijhade/loglens"
 license = "MIT"
 publish = false

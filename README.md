@@ -1,6 +1,7 @@
 # LogLens
 
-A fast desktop viewer and analyzer for Serilog text logs, written in Rust with [GPUI](https://www.gpui.rs).
+A fast desktop log viewer and analyzer for Serilog text logs. One small Windows exe, written in
+Rust with [GPUI](https://www.gpui.rs).
 
 ![LogLens following a folder of logs](docs/screenshot.png)
 
@@ -48,16 +49,33 @@ Shop.NotFoundException: No account matches this phone number.
 A line that does not start with a timestamp belongs to the entry above it. Files of any name or
 extension are read; whatever is not a log of this shape is skipped.
 
-## Build
+## Install
 
-Windows 10 or 11, x64. You need stable Rust and the MSVC build tools with a Windows SDK, which
-GPUI uses to compile its shaders.
+Windows 10 or 11, x64.
+
+- **Download** `loglens.exe` from the [latest release](https://github.com/shadijhade/loglens/releases/latest).
+  It is one file with nothing to install alongside it. The exe is not code-signed, so Windows
+  SmartScreen may ask before the first run.
+- **Scoop**
+
+  ```powershell
+  scoop bucket add shadijhade https://github.com/shadijhade/scoop-bucket
+  scoop install shadijhade/loglens
+  ```
+
+- **winget**: the manifests are in [`packaging/winget`](packaging/winget). The package is not in
+  the winget community repository yet.
+
+### Build it yourself
+
+You need stable Rust and the MSVC build tools with a Windows SDK, which GPUI uses to compile its
+shaders.
 
 ```powershell
 cargo build --release
 ```
 
-The result is `target\release\loglens.exe`: one file, nothing to install alongside it.
+The result is `target\release\loglens.exe`.
 
 ## Use
 
@@ -99,6 +117,7 @@ Add `--follow` to keep the script writing, then turn on **Live tail**.
 ```powershell
 cargo test --release                  # parsing, grouping, filters, tail, export, JSON
 cargo run --example make_icon         # rebuild assets/icon.ico from the two SVGs
+powershell -File tools\release.ps1    # the exe for a release, without this machine's paths in it
 $env:LOGLENS_DIR = "C:\logs\my-api"   # then time the whole pipeline on a real folder:
 cargo test --release real_logs -- --ignored --nocapture
 ```
