@@ -1,0 +1,2 @@
+// Icon id 1: Explorer shows it for the exe, and GPUI loads id 1 as the window/taskbar icon.
+1 ICON "icon.ico"
