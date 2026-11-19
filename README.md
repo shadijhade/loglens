@@ -106,3 +106,7 @@ cargo test --release real_logs -- --ignored --nocapture
 `src/logs.rs` holds everything that is not UI: parsing, grouping, filtering, tailing and export.
 `src/app.rs` is the window. `tools/uitest.ps1` drives a running window by posting it messages, for
 checking the UI without touching the mouse.
+
+## License
+
+[MIT](LICENSE)
